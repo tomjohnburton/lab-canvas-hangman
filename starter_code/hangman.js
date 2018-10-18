@@ -3,8 +3,8 @@ class Hangman  {
   constructor(){
     this.words = ['allooo','babboo','vavoommm'];
     this.secretWord = 'allooo';
-    this.letters = [];
-    this.guessedLetter = '';
+    this.letters = ['a','v','r','q'];
+    this.guessedLetter = 'a';
     this.errorsLeft = 10;
   }
 
@@ -89,11 +89,16 @@ const remDup= s=> s.split("").sort().reduce((a,b)=>(a[a.length-1]!=b)?(a+b):a,""
 console.log(remDup("Rasikawef dfv dd"))
 
 var hangman = new Hangman();
-var letter = 'a'
+var hangmanCanvas = new HangmanCanvas('allooo');
+var letter = 'alo'
 hangman.getWord()
-hangman.checkIfLetter('a');
-hangman.checkClickedLetters('l');
-hangman.addCorrectLetter('o');
-hangman.addWrongLetter();
+for(var i = 0; i < letter.length; i++){
+ if(hangman.checkClickedLetters(letter[i])){
+   hangman.addCorrectLetter(letter[i])
+ } else {
+   hangman.addWrongLetter(letter)
+ }
+}
+
 hangman.checkGameOver();
 hangman.checkWinner();
